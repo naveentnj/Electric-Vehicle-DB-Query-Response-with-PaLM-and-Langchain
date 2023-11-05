@@ -1,13 +1,13 @@
 few_shots = [
-    {'Question' : "How many t-shirts do we have left for Tata in XS model and white color?",
-     'SQLQuery' : "SELECT sum(stock_quantity) FROM ev_cars WHERE brand = 'Tata' AND color = 'White' AND model = 'XS'",
+    {'Question' : "How many ev_cars do we have left for Tata in premium_customized model and white color?",
+     'SQLQuery' : "SELECT sum(stock_quantity) FROM ev_cars WHERE brand = 'Tata' AND color = 'White' AND model = 'premium_customized'",
      'SQLResult': "Result of the SQL query",
      'Answer' : "91"},
-    {'Question': "How much is the total price of the inventory for all S-model t-shirts?",
-     'SQLQuery':"SELECT SUM(price*stock_quantity) FROM ev_cars WHERE model = 'S'",
+    {'Question': "How much is the total price of the inventory for all S-model evcars?",
+     'SQLQuery':"SELECT SUM(price*stock_quantity) FROM ev_cars WHERE model = 'premium'",
      'SQLResult': "Result of the SQL query",
-     'Answer': "22292"},
-    {'Question': "If we have to sell all the Tesla T-shirts today with discounts applied. How much revenue  our store will generate (post discounts)?" ,
+     'Answer': "222920"},
+    {'Question': "If we have to sell all the Tesla ev_cars today with discounts applied. How much revenue  our store will generate (post discounts)?" ,
      'SQLQuery' : """SELECT sum(a.total_amount * ((100-COALESCE(discounts.percentage_discount,0))/100)) as total_revenue from
 (select sum(price*stock_quantity) as total_amount, ev_car_id from ev_cars where brand = 'Tesla'
 group by ev_car_id) a left join discounts on a.ev_car_id = discounts.ev_car_id

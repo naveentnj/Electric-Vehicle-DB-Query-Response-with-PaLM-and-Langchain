@@ -12,7 +12,7 @@ will may ask questions such as,
 - How much sales our store will generate if we can sell all extra-small size t shirts after applying discounts?
 The system is intelligent enough to generate accurate queries for given question and execute them on MySQL database
 
-![](nav_ev_app.png)
+![](nav_electric_vehicle_database_app.png)
 
 ## Project Highlights
 
@@ -23,7 +23,7 @@ The system is intelligent enough to generate accurate queries for given question
   - Hugging face embeddings
   - Streamlit for UI
   - Langchain framework
-  - Chromadb as a vector store
+  - FAISS as a vector store
   - Few shot learning
 - In the UI, store manager will ask questions in a natural language and it will produce the answers
 
@@ -33,7 +33,7 @@ The system is intelligent enough to generate accurate queries for given question
 1.Clone this repository to your local machine using:
 
 ```bash
-  git clone https://github.com/naveentnj/Electric-Vehicle-DB-Query-Response-with-PaLM-and-Langchain/blob/main/few_shots.py
+  git clone https://github.com/naveentnj/Electric-Vehicle-DB-Query-Response-with-PaLM-and-Langchain.git
 ```
 2.Navigate to the project directory:
 

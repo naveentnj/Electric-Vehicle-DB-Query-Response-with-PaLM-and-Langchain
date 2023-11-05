@@ -3,7 +3,7 @@ from langchain.utilities import SQLDatabase
 from langchain_experimental.sql import SQLDatabaseChain
 from langchain.prompts import SemanticSimilarityExampleSelector
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.prompts import FewShotPromptTemplate
 from langchain.chains.sql_database.prompt import PROMPT_SUFFIX, _mysql_prompt
 from langchain.prompts.prompt import PromptTemplate
@@ -21,16 +21,16 @@ load_dotenv()  # take environment variables from .env (especially openai api key
 def get_few_shot_db_chain():
     db_driver = "ODBC Driver 17 for SQL Server"
     db_server = "NAVEENTAMIZHAN"
-    db_name = "atliq_tshirts"
+    db_name = "nav_electric_vehicles"
     Database_Connect = f"mssql://@{db_server}/{db_name}?Driver={db_driver}"
 
     engine = create_engine(Database_Connect)
     db = SQLDatabase(engine, sample_rows_in_table_info=3)
     llm = GooglePalm(google_api_key=os.environ["GOOGLE_API_KEY"], temperature=0.1)
-
+    #PATH = r"D:\HF_CACHE_MODELS_DATA\hkunlp_instructor-xl\\"
     embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
     to_vectorize = [" ".join(example.values()) for example in few_shots]
-    vectorstore = Chroma.from_texts(to_vectorize, embeddings, metadatas=few_shots)
+    vectorstore = FAISS.from_texts(to_vectorize, embeddings, metadatas=few_shots)
     example_selector = SemanticSimilarityExampleSelector(
         vectorstore=vectorstore,
         k=2,
